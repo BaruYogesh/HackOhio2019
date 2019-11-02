@@ -1,26 +1,42 @@
 const CognitiveServicesCredentials = require("@azure/ms-rest-js");
 const TextAnalyticsAPIClient = require("@azure/cognitiveservices-textanalytics");
 
-const key_var = 'TEXT_ANALYTICS_SUBSCRIPTION_KEY';
-//const key_var = 'c93eee6b9dab47299eff9ebae6ced048';
-if (!process.env[key_var]) {
-    throw new Error('please set/export the following environment variable: ' + key_var);
+export function log_key(key){
+    console.log("id is ", process.env[key]);
+    const key_var = key;
+    if (!process.env[key_var]) {
+        throw new Error('please set/export the following environment variable: ' + key_var);
+    }
+    const subscription_key = process.env[key_var];
+
+    return subscription_key;
 }
-const subscription_key = process.env[key_var];
 
-const endpoint_var = 'TEXT_ANALYTICS_ENDPOINT';
-//const endpoint_var = 'https://eastus.api.cognitive.microsoft.com/';
-if (!process.env[endpoint_var]) {
-    throw new Error('please set/export the following environment variable: ' + endpoint_var);
+export function log_enpoint(end){
+
+    const endpoint_var = end;
+    if (!process.env[endpoint_var]) {
+        throw new Error('please set/export the following environment variable: ' + endpoint_var);
+    }
+
+    const endpoint = process.env[endpoint_var];
+
+    return endpoint;
 }
-const endpoint = process.env[endpoint_var];
 
-const creds = new CognitiveServicesCredentials.ApiKeyCredentials({ inHeader: { 'Ocp-Apim-Subscription-Key': subscription_key } });
-const client = new TextAnalyticsAPIClient.TextAnalyticsClient(creds, endpoint);
+export function buildClient (sub_key, endpoint){
+    const creds = new CognitiveServicesCredentials.ApiKeyCredentials({ inHeader: { 'Ocp-Apim-Subscription-Key': sub_key } });
+    const client = new TextAnalyticsAPIClient.TextAnalyticsClient(creds, endpoint);
+
+    return client;
+}
 
 
 
-export function analyzeSentence(sentence){
+
+
+
+export function analyzeSentence(client, sentence){
 
     const inputDocuments = {documents:[
         {language:"en", id:"1", text:sentence}

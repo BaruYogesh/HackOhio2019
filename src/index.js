@@ -5,11 +5,19 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import * as bot from './Bot';
-//import * as ta from './TextAnalysis';
+import * as ta from './TextAnalysis';
 
 
 bot.login();
-//ta.analyzeSentence("hello world");
+
+//'TEXT_ANALYTICS_SUBSCRIPTION_KEY'
+//'TEXT_ANALYTICS_ENDPOINT'
+
+let key = ta.log_key('TEXT_ANALYTICS_SUBSCRIPTION_KEY');
+let end =ta.log_enpoint('TEXT_ANALYTICS_ENDPOINT');
+let azureClient = ta.buildClient(key, end);
+
+ta.analyzeSentence(azureClient, "Hello World");
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
