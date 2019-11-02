@@ -5,11 +5,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import * as bot from './Bot';
-import * as ta from './TextAnalysis';
+//import * as ta from './TextAnalysis';
 
 
 bot.login();
-ta.analyzeSentence("hello world");
+//ta.analyzeSentence("hello world");
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

@@ -20,7 +20,6 @@ const client = new TextAnalyticsAPIClient.TextAnalyticsClient(creds, endpoint);
 
 
 
-
 export function analyzeSentence(sentence){
 
     const inputDocuments = {documents:[
