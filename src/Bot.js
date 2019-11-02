@@ -10,6 +10,8 @@ client.on("message", (message) => {
   if (message.content.startsWith("ping")) {
     message.channel.send("pong!");
   }
+  //message.content add to database field 1
+  //meess
 });
 
 export function login(){
